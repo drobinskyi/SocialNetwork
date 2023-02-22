@@ -1,31 +1,36 @@
 import { NavLink } from 'react-router-dom';
 import s from './Dialogs.module.css';
 
-const Dialogs = (props) => {
+const DialogItem = (props) => {
+    let path = "/dialogs/" + props.id;
+    return (
+        <div>
+            <NavLink to={path} className={(navData) => navData.isActive ? s.active : s.dialog}>{props.name}</NavLink>
+        </div>
+    )
+}
 
+const Message = (props) => {
+    return (
+        <div className={s.message}>{props.message}</div>
+    )
+}
+
+
+const Dialogs = (props) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <div>
-                    <NavLink to="/dialogs/1" className={(navData) => navData.isActive ? s.active : s.dialog}>Dmytro</NavLink>
-                </div>
-                <div>
-                    <NavLink to="/dialogs/2" className={(navData) => navData.isActive ? s.active : s.dialog}>Andriy</NavLink>
-                </div>
-                <div>
-                    <NavLink to="/dialogs/3" className={(navData) => navData.isActive ? s.active : s.dialog}>Svitlana</NavLink>
-                </div>
-                <div>
-                    <NavLink to="/dialogs/4" className={(navData) => navData.isActive ? s.active : s.dialog}>Sasha</NavLink>
-                </div>
-                <div>
-                    <NavLink to="/dialogs/5" className={(navData) => navData.isActive ? s.active : s.dialog}>Viktor</NavLink>
-                </div>
+                <DialogItem name="Dmytro" id="1" />
+                <DialogItem name="Andriy" id="2" />
+                <DialogItem name="Svitlana" id="3" />
+                <DialogItem name="Sasha" id="4" />
+                <DialogItem name="Viktor" id="5" />
             </div>
             <div className={s.messages}>
-                <div className={s.message}>Hi</div>
-                <div className={s.message}>How is your day?</div>
-                <div className={s.message}>Nice!</div>
+                <Message message="Hi" />
+                <Message message="How is your day?" />
+                <Message message="Nice!" />
             </div>
 
         </div>
