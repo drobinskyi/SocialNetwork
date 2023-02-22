@@ -10,10 +10,12 @@
 .dialogsItems .active {
     color: white;
     font-size: larger;
+    text-decoration: none;
 }
 
 .dialog {
     color: bisque;
+    text-decoration: none;
 }
 
 .messages {
