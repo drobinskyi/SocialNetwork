@@ -16,13 +16,14 @@ let state = {
             {id: 4 , name: 'Sasha'},
             {id: 5 , name: 'Viktor'}
         ],
-          messages: [
-            {id: 1 , message: 'Hi', key: 11},
-            {id: 2 , message: 'How is your day?', key: 12},
-            {id: 3 , message: 'Nice!', key: 13},
-            {id: 4 , message: 'Ok', key: 14},
-            {id: 5 , message: 'At least I tried', key: 15}
-        ]
+        messages: [
+            {id: 1 , message: 'Hi'},
+            {id: 2 , message: 'How is your day?'},
+            {id: 3 , message: 'Nice!'},
+            {id: 4 , message: 'Ok'},
+            {id: 5 , message: 'At least I tried'}
+        ],
+        newMessageText: 'Text for new message'
     }   
 }
 
@@ -39,6 +40,23 @@ export let addPost = () => {
 
 export let updateNewPostText = (newText) => {
     state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
+}
+
+
+export let addMessage = () => {
+    let newMessage = {
+        id: 6,
+        message: state.dialogsPage.newMessageText
+        
+    };
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = '';
+    rerenderEntireTree(state);
+}
+
+export let updateNewMessageText = (newMessage) => {
+    state.dialogsPage.newMessageText = newMessage;
     rerenderEntireTree(state);
 }
 

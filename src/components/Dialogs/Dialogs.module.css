@@ -24,5 +24,30 @@
 }
 
 .message {
+    
+}
 
+.writeMessage {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.writeMessage textarea {
+    height: 30px;
+    width: 100%;
+}
+
+.writeMessage button {
+    height: 35px;
+}
+
+.newTextMessage {
+    flex-grow: 1;
+}
+
+.buttonSendMessage {
+    width: 50px;
+    margin-left: 20px;
 }
