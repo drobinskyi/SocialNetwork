@@ -1,24 +1,25 @@
 import React from 'react';
-import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/state';
+import { addMessageActionCreator, updateNewMessageBodyActionCreator } from '../../redux/state';
 import DialogItem from './DialogItem/DialogItem';
 import s from './Dialogs.module.css';
 import Message from './Message/Message';
 
 const Dialogs = (props) => {
 
-    let dialogElements = props.state.dialogs.map( dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.name} /> );
-    let messagesElements = props.state.messages.map( m => <Message message={m.message} id={m.id} key={m.message} /> );
+    let state = props.store.getState().dialogsPage;
 
-    let newMessageElement = React.createRef();
+    let dialogElements = state.dialogs.map( dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.name} /> );
+    let messagesElements = state.messages.map( m => <Message message={m.message} id={m.id} key={m.message} /> );
+    let newMessageBody = state.newMessageBody;
 
-    let addNewMessage = () => {
-        props.dispatch(addMessageActionCreator());
+    let onSendMessageClick = () => {
+        props.store.dispatch(addMessageActionCreator());
     }
 
-    let onMessageChange = () => {
-        let text = newMessageElement.current.value;
-        let action = updateNewMessageTextActionCreator(text);
-        props.dispatch(action);
+    let onNewMessageChange = (e) => {
+        let body = e.target.value;
+        let action = updateNewMessageBodyActionCreator(body);
+        props.store.dispatch(action);
     }
 
     return (
@@ -30,10 +31,13 @@ const Dialogs = (props) => {
                 <div className={s.message}>{ messagesElements }</div>
                 <div className={s.writeMessage}>
                     <div className={s.newTextMessage}>
-                        <textarea onChange={onMessageChange} ref={newMessageElement} value={ props.newMessageText } />
+                        <textarea 
+                            onChange={onNewMessageChange} 
+                            value={ newMessageBody } 
+                            placeholder='Enter your new message' />
                     </div>
                     <div className={s.buttonSendMessage}>
-                        <button onClick={ addNewMessage }>Send</button>
+                        <button onClick={ onSendMessageClick }>Send</button>
                     </div>
                 </div>
             </div>
