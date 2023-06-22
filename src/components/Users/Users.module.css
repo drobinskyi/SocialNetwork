@@ -1,3 +1,7 @@
+.usersCard {
+    margin: 12px;
+}
+
 .userPhoto {
     width: 100px;
     height: 100px;
@@ -11,4 +15,9 @@
 
 .pagesNumber {
     cursor: pointer;
+}
+
+.usersName {
+    display: flex;
+    gap: 8px;
 }
